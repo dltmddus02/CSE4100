@@ -1,0 +1,77 @@
+C:\Users\User\OneDrive\바탕 화면\3-1\SP\backup\20211569_pj2\task_1
+
+./stockserver 60093
+./stockclient 127.0.1.1 60093
+
+
+./multiclient 127.0.1.1 60093 3
+
+https://people.cs.rutgers.edu/~pxk/416/notes/c-tutorials/times.html
+
+
+1 7 1000
+5 3 3700
+3 10 1200
+4 8 5000
+2 6 20000
+7 10 5000
+6 10 5000
+9 19 5000
+10 5 5000
+8 7 5000
+
+#include <sys/time.h>
+    struct timeval start, end;
+    unsigned long e_usec;
+    gettimeofday(&start, 0);
+    gettimeofday(&end, 0);
+    e_usec = ((end.tv_sec * 1000000) + end.tv_usec) - ((start.tv_sec * 1000000) + start.tv_usec);
+    
+    printf("elapsed time: %lu microseconds\n", e_usec);
+
+
+1. 확장성
+show, buy, sell 랜덤, client 당 command 수  : 10, 주식 개수 : 5
+조건1 client 수 : 4 10066127
+조건2 client 수 : 8 10183779
+조건3 client 수 : 12 10380219
+조건4 client 수 : 16 10517040500
+조건5 client 수 : 20 10596079
+
+50 10982110 10571890
+100 13069454 11089455
+150 24282843 23237186
+200 27613112 25631118
+250 32166340 28280487
+
+-> 아니 숫자 커질수록 커지네...
+
+2. 워크로드
+(1) buy 또는 sell만 (client 수 : 4, 주식 개수 : 5)
+조건1 client 당 command 수 : 5 5102305 5182152
+조건2 client 당 command 수 : 10 10129623 10091212
+조건3 client 당 command 수 : 15 15101330 15184264
+조건4 client 당 command 수 : 20 20375871 20119328
+조건5 client 당 command 수 : 25 25197154 25389735
+
+(1) buy 또는 sell만 (client 수 : 5, 주식 개수 : 5)
+조건1 client 당 command 수 : 20 20479587
+조건2 client 당 command 수 : 40 40415286
+조건3 client 당 command 수 : 15 
+조건4 client 당 command 수 : 20 
+조건5 client 당 command 수 : 25 
+
+
+(2) show만 (client 수 : 4, 주식 개수 : 5)
+조건1 client 당 command 수 : 5 5169649 5283926
+조건2 client 당 command 수 : 10 10229035 10114356
+조건3 client 당 command 수 : 15 15150503 15135905
+조건4 client 당 command 수 : 20 20214460 20135719
+조건5 client 당 command 수 : 25 25201179 25134028
+
+(3) 전부 (client 수 : 4, 주식 개수 : 5)
+조건1 client 당 command 수 : 5 5042468 5104997
+조건2 client 당 command 수 : 10 10066127 10141872
+조건3 client 당 command 수 : 15 15165671 15098614
+조건4 client 당 command 수 : 20 20131977 20097492
+조건5 client 당 command 수 : 25 25107840 25144981

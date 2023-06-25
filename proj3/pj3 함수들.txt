@@ -1,0 +1,10 @@
+int mm_init(void) (o)
+void *mm_malloc(size_t size) (o) 강의자료
+void mm_free(void *bp) (o) 강의자료
+void *mm_realloc(void *ptr, size_t size)
+static void place(void *bp, size_t asize) (o)
+static void *find_fit(size_t asize) (o)
+static void *extend_heap(size_t words) (o) 강의자료
+static void *coalesce(void *bp) (o)
+static void delete_freeblkp(void *bp) (o)
+static void insert_freeblkp(void *bp) (o)
